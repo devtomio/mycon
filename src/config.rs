@@ -96,7 +96,7 @@ impl<'env> Config<'env> {
     }
 
     /// Sets the input stream of the `Config`.
-    pub fn input(self, input: impl BufRead + 'env) -> Self {
+    pub fn input(self, input: impl BufRead + 'env + Send + Sync) -> Self {
         Self {
             input: Box::new(input),
             ..self
@@ -104,7 +104,7 @@ impl<'env> Config<'env> {
     }
 
     /// Sets the output stream of the `Config`.
-    pub fn output(self, output: impl Write + 'env) -> Self {
+    pub fn output(self, output: impl Write + 'env + Send + Sync) -> Self {
         Self {
             output: Box::new(output),
             ..self
