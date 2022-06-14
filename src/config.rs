@@ -55,7 +55,7 @@ pub enum ExecAction {
 /// its environment via instructions for I/O and shell command execution.
 pub struct Config<'env> {
     trace: bool,
-    fmt_trace: Box<dyn FnMut(Trace)>,
+    fmt_trace: Box<dyn FnMut(Trace) + Send + Sync>,
     input: Box<dyn BufRead + 'env>,
     input_buffer: String,
     output: Box<dyn Write + 'env>,
