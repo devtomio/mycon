@@ -88,7 +88,7 @@ impl<'env> Config<'env> {
     }
 
     /// Sets the function to format trace output.
-    pub fn trace_format(self, fmt_trace: impl FnMut(Trace) + 'static) -> Self {
+    pub fn trace_format(self, fmt_trace: impl FnMut(Trace) + 'static + Send + Sync) -> Self {
         Self {
             fmt_trace: Box::new(fmt_trace),
             ..self
