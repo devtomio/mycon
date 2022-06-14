@@ -56,9 +56,9 @@ pub enum ExecAction {
 pub struct Config<'env> {
     trace: bool,
     fmt_trace: Box<dyn FnMut(Trace) + Send + Sync>,
-    input: Box<dyn BufRead + 'env>,
+    input: Box<dyn BufRead + 'env + Send + Sync>,
     input_buffer: String,
-    output: Box<dyn Write + 'env>,
+    output: Box<dyn Write + 'env + Send + Sync>,
     file_view: FileView,
     exec_action: ExecAction,
 }
